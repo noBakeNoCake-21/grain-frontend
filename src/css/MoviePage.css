@@ -1,0 +1,206 @@
+.movieHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 750px;
+    height: 360px;
+    padding: 10px;
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    box-shadow:
+        0 0 10px #00f,
+        0 0 10px #0ff,
+        0 0 20px rgba(0, 255, 255, 0.5),
+        0 0 40px rgba(0, 120, 255, 0.3);
+
+    margin: 50px auto;
+}
+
+.movie {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+
+    box-shadow: inset 0 0 20px rgba(0, 0, 255, 0.2);
+}
+
+.movieInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    box-shadow:
+        0 0 25px rgba(0, 255, 255, 0.3);
+
+    max-width: 500px;
+    margin: 50px auto;
+    color: #fff;
+}
+
+.movieInfo h1 {
+    font-size: 1.8rem;
+    text-align: center;
+    text-shadow:
+        0 0 25px rgba(0, 255, 255, 0.3);
+}
+
+.movieInfo img {
+    width: 180px;
+    /* standard poster width */
+    height: 270px;
+    /* standard poster height */
+    object-fit: cover;
+    /* crops and fills the space nicely */
+    border-radius: 8px;
+    /* rounded corners */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    /* subtle movie-poster shadow */
+    margin-bottom: 10px;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    /* box-shadow: 0 0 15px #00f, 0 0 25px #0ff; */
+}
+
+.movieInfo p {
+    font-size: 0.95rem;
+    text-align: center;
+    line-height: 1.4;
+    color: #cceeff;
+    text-shadow: 0 0 3px rgba(0, 255, 255, 0.4);
+    margin: 4px 0;
+}
+
+.movieInfo:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s ease-in-out;
+}
+
+.movieMeta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.pro {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 6px 14px;
+    border-radius: 12px;
+
+    background: rgba(0, 255, 255, 0.1);
+    color: #0ff;
+    text-decoration: none;
+    font-weight: 500;
+    text-align: center;
+
+    box-shadow: 0 0 5px #0ff, 0 0 10px rgba(0, 255, 255, 0.2);
+    transition: all 0.2s ease-in-out;
+}
+
+.pro:hover {
+    background: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 10px #0ff, 0 0 20px rgba(0, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.pro.active {
+    background: rgba(0, 255, 255, 0.25);
+    box-shadow: 0 0 15px #0ff, 0 0 30px rgba(0, 255, 255, 0.4);
+}
+
+
+
+/* Upload Form  */
+.movieFormat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 15px 20px;
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    box-shadow: 0 0 15px rgba(0, 120, 255, 0.3);
+
+
+    max-width: 480px;
+    margin: 15px auto;
+    color: #cceeff;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.movieFormat h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    text-shadow:
+        0 0 5px #00f,
+        0 0 10px #0ff,
+        0 0 15px rgba(0, 120, 255, 0.3);
+}
+
+.movieFormat p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin: 0;
+    text-shadow: 0 0 3px rgba(0, 255, 255, 0.3);
+}
+
+
+.uploadButton {
+    display: inline-block;
+    text-decoration: none;
+    font-family: 'Cinzel', 'Playfair Display', serif;
+    color: #ffffff;
+
+    padding: 10px 22px;
+
+    border: 1px solid rgba(0, 120, 255, 0.6);
+    border-radius: 6px;
+
+    background: rgba(0, 120, 255, 0.15);
+    backdrop-filter: blur(4px);
+
+    text-shadow:
+        0 0 5px #00f,
+        0 0 10px #0ff,
+        0 0 15px rgba(0, 120, 255, 0.3);
+
+    box-shadow:
+        0 0 10px rgba(0, 120, 255, 0.3),
+        inset 0 0 10px rgba(0, 120, 255, 0.15);
+
+    transition: all 0.25s ease;
+}
+
+.uploadButton:hover {
+    background: rgba(0, 120, 255, 0.35);
+
+    box-shadow:
+        0 0 15px rgba(0, 120, 255, 0.6),
+        0 0 25px rgba(0, 255, 255, 0.4);
+
+    transform: translateY(-2px);
+}

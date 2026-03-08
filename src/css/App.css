@@ -1,0 +1,178 @@
+/* Header and Body styling */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-y: auto;
+  background-color: #000;
+  /* deep space black */
+  color: #fff;
+  /* ensure text is visible */
+  position: relative;
+}
+
+/* Blurry star explosions as background layer */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle at 30% 40%, rgba(120, 80, 255, 0.25), transparent 60%),
+    radial-gradient(circle at 70% 60%, rgba(255, 120, 200, 0.25), transparent 70%),
+    radial-gradient(circle at 50% 50%, rgba(0, 150, 255, 0.15), transparent 80%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(40px);
+  /* keeps your cinematic blur */
+  z-index: -1;
+  /* behind content */
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* GRAIN app name cinematic header */
+.appname {
+  color: #fff;
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  font-size: 7rem;
+  text-align: center;
+  text-decoration: none;
+  text-shadow:
+    0 0 10px #00f,
+    0 0 10px #0ff,
+    0 0 5px rgba(0, 255, 255, 0.5),
+    0 0 90px rgba(0, 120, 255, 0.3);
+}
+
+.appname:visited {
+  color: #fff;
+}
+
+.appname:hover {
+  color: rgba(0, 255, 255, 1);
+}
+
+.appname:active {
+  color: #fff;
+}
+
+
+
+
+/* Nav */
+
+
+.nav {
+  display: flex;
+  gap: 80px;
+  justify-content: center;
+  align-items: center;
+
+}
+
+/* Nav links  */
+
+/* login */
+.login {
+  display: inline-block;
+  text-decoration: none;
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  color: #ffffff;
+
+  padding: 10px 22px;
+
+  border: 1px solid rgba(0, 120, 255, 0.6);
+  border-radius: 6px;
+
+  background: rgba(0, 120, 255, 0.15);
+  backdrop-filter: blur(4px);
+
+  text-shadow:
+    0 0 5px #00f,
+    0 0 10px #0ff,
+    0 0 15px rgba(0, 120, 255, 0.3);
+
+  box-shadow:
+    0 0 10px rgba(0, 120, 255, 0.3),
+    inset 0 0 10px rgba(0, 120, 255, 0.15);
+
+  transition: all 0.25s ease;
+}
+
+
+
+.login:hover {
+  background: rgba(0, 120, 255, 0.35);
+
+  box-shadow:
+    0 0 15px rgba(0, 120, 255, 0.6),
+    0 0 25px rgba(0, 255, 255, 0.4);
+
+  transform: translateY(-2px);
+}
+
+.login:active {
+  color: rgba(0, 120, 255, 0.35);
+}
+
+
+/* sign */
+.sign {
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 1px solid #0ff;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.sign:visited {
+  color: #fff;
+}
+
+.sign:hover {
+  color: rgba(0, 255, 255, 1);
+}
+
+.sign:active {
+  color: #fff;
+}
+
+
+.dashboard {
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  color: #fff;
+  padding: 10px 20px;
+  border: 1px solid #0ff;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  justify-content: right;
+}
+
+
+/* GenreRow On HomePage */
+.genreNameHolder {
+  margin-bottom: 50px;
+}
+
+.genreName {
+  margin-left: 40px;
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  color: white;
+
+  text-shadow:
+    0 0 5px #00f,
+    0 0 10px #0ff,
+    0 0 15px rgba(0, 120, 255, 0.3);
+}
