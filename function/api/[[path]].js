@@ -5,7 +5,7 @@ export async function onRequest(context) {
     const url = new URL(request.url);
 
     // Build the backend URL by stripping /api
-    const targetUrl = API_URL + url.pathname.replace("/api", "") + url.search;
+    const targetUrl = API_URL + url.pathname + url.search;
 
     // Create a new Request object to forward everything as-is
     const backendRequest = new Request(targetUrl, {

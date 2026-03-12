@@ -12,7 +12,7 @@ import Header from '../components/Header';
 function Homepage() {
 
 
-  const [movies, setMovies] = useState([])
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
 
@@ -38,7 +38,7 @@ function Homepage() {
       <Header />
       <main>
         <div style={{ display: "flex", flexDirection: "column", gap: "20px", padding: "20px" }}>
-          {genres.map(genre => {
+          {(genres || []).map(genre => {
             const moviesForGenre = movies.filter(movie => movie.genre === genre);
             return (
               <GenreRow
