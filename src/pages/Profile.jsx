@@ -48,7 +48,7 @@ function Profile() {
 
                 <div className="profileHeader">
                     <div className="profilePicHolder">
-                        <img src={`http://localhost:3000/${user.profile_pic}`} alt={user.username} />
+                        <img src={`${user.profile_pic}`} alt={user.username} />
                     </div>
                     <div className="profileInfo">
                         <h1>{user.username}</h1>

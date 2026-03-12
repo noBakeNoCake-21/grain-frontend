@@ -45,17 +45,23 @@ function Movie() {
             <div>
                 <div className="movieInfo">
                     <h1>{movie.title}</h1>
-                    <img src={`http://localhost:3000/${movie.poster_file}`} alt={movie.title} />
+                    <img src={`${movie.poster_file}`} alt={movie.title} />
                     <p>{movie.description}</p>
                     <p>Genre: {movie.genre}</p>
                 </div>
 
                 {/* Video player */}
                 <div className="movieHolder">
-                    <video className="movie" controls width="640">
-                        <source src={`http://localhost:3000/${movie.video_file}`} type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
+                    {movie.video_file ? (
+                        <iframe
+                            className="movie"
+                            width="640"
+                            src={`https://iframe.videodelivery.net/${movie.video_file}`}
+                            allowFullScreen
+                        />
+                    ) : (
+                        <p>Video File not available</p>
+                    )}
                 </div>
                 <div className="movieMeta">
                     <NavLink to={`/profile/${movie.user_id}`} className={({ isActive }) => isActive ? 'pro active' : 'pro'}>Uploader's Profile</NavLink>
@@ -66,4 +72,6 @@ function Movie() {
     )
 }
 
-export default Movie; 
+export default Movie;
+
+

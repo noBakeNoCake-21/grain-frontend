@@ -52,6 +52,7 @@ function Signup() {
         });
 
         axios.post("/api/signup", signupData, {
+            withCredentials: true,
             headers: {
                 "Content-Type": "multipart/form-data",
             },

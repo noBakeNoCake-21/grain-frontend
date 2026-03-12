@@ -4,6 +4,8 @@ import Header from "../components/Header";
 import Button from "../components/Button";
 import axios from "axios";
 import '../css/MoviePage.css'
+import { Navigate, useNavigate } from "react-router";
+import { Upload as TusUpload } from "tus-js-client";
 
 
 function Upload() {
@@ -20,6 +22,8 @@ function Upload() {
     const movieInputRef = useRef();
     const posterInputRef = useRef();
 
+    const navigate = useNavigate();
+
     function handleChange(e) {
         const { name, value, files, type } = e.target;
 
@@ -29,8 +33,10 @@ function Upload() {
         }));
     };
 
+
+
     // handle submit 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         console.log("submit triggered");
 
@@ -38,31 +44,97 @@ function Upload() {
             alert("Please select both a movie file and a poster image.");
             return;
         }
-
-        const signupData = new FormData();
-        Object.entries(formData).forEach(([key, value]) => {
-            signupData.append(key, value);
-        });
         setIsLoading(true);
-        axios.post('/api/users/upload', signupData, {
-            withCredentials: true, headers: {
-                "Content-Type": "multipart/form-data"
-            }
-        }).then((res) => {
-            setIsLoading(false);
-            console.log(res);
-            setFormData(
-                {
-                    title: "",
-                    description: "",
-                    movieFile: null,
-                    posterFile: null,
-                    genre: ""
+        const getVideoData = (file) => {
+            return new Promise((resolve, reject) => {
+                const url = URL.createObjectURL(file);
+                const video = document.createElement('video');
+
+                video.preload = 'metadata';
+                video.src = url;
+
+                video.onloadedmetadata = () => {
+                    URL.revokeObjectURL(url);
+                    resolve({
+                        duration: Math.ceil(video.duration),
+                        name: file.name,
+                        filetype: file.type
+                    });
+                };
+
+                video.onerror = (err) => {
+                    reject(err);
+                };
+            });
+        };
+
+        const file = formData.movieFile;
+
+        const { duration, name, filetype } = await getVideoData(file);
+
+
+        const upload = new TusUpload(file, {
+            endpoint: '/api/users/streamupload',
+            storeFingerprintForResuming: false,
+            removeFingerprintOnSuccess: true,
+            overridePatchMethod: false,
+            withCredentials: true,
+            chunkSize: 50 * 1024 * 1024,
+            metadata: {
+                name: name,
+                filetype: filetype,
+                maxdurationseconds: String(duration)
+            },
+            onError: (err) => {
+                console.error("Tus upload failed:", err);
+                setIsLoading(false);
+            },
+            onProgress: (bytesUploaded, bytesTotal) => {
+                const percentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);
+                console.log(`Upload progress: ${percentage}%`);
+            },
+            onSuccess: () => {
+
+                const uid = upload.url.split('/').pop();
+
+                console.log("TUS Upload finished:", uid);
+
+                const signupData = new FormData();
+                Object.entries(formData).forEach(([key, value]) => {
+                    if (key === "movieFile") {
+                        signupData.append(key, uid); // Send UID instead of file
+                    } else {
+                        signupData.append(key, value);
+                    }
                 });
-            movieInputRef.current.value = "";
-            posterInputRef.current.value = "";
-            console.log("submit fired");
-        }).catch(err => console.error(err));
+
+                axios.post('/api/users/upload', signupData, {
+                    withCredentials: true, headers: {
+                        "Content-Type": "multipart/form-data"
+                    }
+                }).then((res) => {
+                    setIsLoading(false);
+                    console.log(res);
+                    setFormData(
+                        {
+                            title: "",
+                            description: "",
+                            movieFile: null,
+                            posterFile: null,
+                            genre: ""
+                        });
+                    movieInputRef.current.value = "";
+                    posterInputRef.current.value = "";
+                    console.log("submit fired");
+                    navigate('/dashboard');
+                }).catch(err => {
+                    console.error(err);
+                    setIsLoading(false);
+                });
+            },
+
+        });
+        upload.start();
     }
 
 

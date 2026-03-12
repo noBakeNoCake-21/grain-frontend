@@ -16,7 +16,7 @@ function MovieCard(props) {
 
 
 
-    const posterUrl = !imgError && `http://localhost:3000/${props.movie.poster_file}` ? `http://localhost:3000/${encodeURI(props.movie.poster_file)}` : null;
+    const posterUrl = !imgError && `${props.movie.poster_file}` ? `${encodeURI(props.movie.poster_file)}` : null;
 
     return (
         <div
@@ -35,7 +35,7 @@ function MovieCard(props) {
             </p>
             {posterUrl ? (
                 <img
-                    src={`http://localhost:3000/${props.movie.poster_file}`}//encodeURI http://localhost:3000/
+                    src={`${props.movie.poster_file}`}//encodeURI http://localhost:3000/
                     alt={props.movie.title || "Movie poster"}
                     className="movieposter"
                     onError={() => setImgError(true)}

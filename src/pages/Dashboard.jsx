@@ -86,7 +86,7 @@ function Dashboard() {
             setUserMovies(prev =>
                 prev.filter(movie => movie.id !== movieId)
             );
-             navigate('/dashboard');
+            navigate('/dashboard');
 
         } catch (err) {
             console.error(err);
@@ -118,7 +118,7 @@ function Dashboard() {
 
             <div className="dashboardheader">
                 <div className="dashPicHolder">
-                    <img className="dashpic" src={`http://localhost:3000/${currentUser.profile_pic}`} />
+                    <img className="dashpic" src={`${currentUser.profile_pic}`} />
                 </div>
                 <div className="dashboardh2">
                     <h2>Welcome {currentUser.username}</h2>
