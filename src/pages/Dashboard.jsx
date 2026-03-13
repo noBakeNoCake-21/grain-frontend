@@ -109,7 +109,6 @@ function Dashboard() {
 
     }
 
-    console.log(currentUser.profile_pic);
 
     return (
         <main>

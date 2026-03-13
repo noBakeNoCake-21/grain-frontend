@@ -23,7 +23,6 @@ function Profile() {
             try {
                 //fetch movies and user - make sure to make an api just for this call. 
                 const response = await axios.get(`/api/users/${id}`);
-                console.log(response.data);
                 setUser(response.data);
             } catch (err) {
                 setError("User not found");

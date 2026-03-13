@@ -38,7 +38,6 @@ function Movie() {
     }, [id]);
 
     if (!movie) { return <p>Loading...</p> }
-    console.log(movie.video_file);
     return (
         <>
             <Header />
