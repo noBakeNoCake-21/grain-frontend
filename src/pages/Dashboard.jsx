@@ -1,4 +1,4 @@
-require('dotenv').configu();
+
 //react 
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router";
@@ -20,7 +20,7 @@ import GenreRow from "../components/GenreRow";
 import '../css/dashboard.css';
 import '../css/MoviePage.css';
 
-const apiUrl = process.env.API_URL;
+
 
 function Dashboard() {
 
