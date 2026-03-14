@@ -1,0 +1,105 @@
+.sprocket {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -11px 0 0 -11px;
+}
+
+.s1 {
+    transform: rotate(0deg) translateY(-42px);
+}
+
+.s2 {
+    transform: rotate(60deg) translateY(-42px);
+}
+
+.s3 {
+    transform: rotate(120deg) translateY(-42px);
+}
+
+.s4 {
+    transform: rotate(180deg) translateY(-42px);
+}
+
+.s5 {
+    transform: rotate(240deg) translateY(-42px);
+}
+
+.s6 {
+    transform: rotate(300deg) translateY(-42px);
+}
+
+
+.reel-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 0;
+    gap: 1.5rem;
+}
+
+.reel {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #222;
+    position: relative;
+    animation: spin 1.2s linear infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reel-center {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: white;
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reel-center-inner {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #222;
+}
+
+.loading-text {
+    font-size: 13px;
+    color: #888;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}

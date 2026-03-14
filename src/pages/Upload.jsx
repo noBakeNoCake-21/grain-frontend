@@ -2,6 +2,7 @@ import { useState, useContext, useRef } from "react";
 import { UserContext } from "../context";
 import Header from "../components/Header";
 import Button from "../components/Button";
+import Loading from "../components/Loading";
 import axios from "axios";
 import '../css/MoviePage.css'
 import { Navigate, useNavigate } from "react-router";
@@ -113,7 +114,6 @@ function Upload() {
                         "Content-Type": "multipart/form-data"
                     }
                 }).then((res) => {
-                    setIsLoading(false);
                     console.log(res);
                     setFormData(
                         {
@@ -207,7 +207,7 @@ function Upload() {
 
                     <Button type='submit'>Upload</Button>
                 </form>
-                {isLoading && <p>Uploading...</p>}
+                {isLoading && <Loading />}
                 <div className="movieFormat">
                     <h3>Please upload to these file specifications</h3>
                     <p>Resolution: 1920x1080</p>
