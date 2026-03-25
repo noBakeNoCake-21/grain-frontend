@@ -9,6 +9,7 @@ import axios from "axios";
 
 //components 
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 //css
 import '../css/MoviePage.css';
@@ -66,7 +67,9 @@ function Movie() {
                     <NavLink to={`/profile/${movie.user_id}`} className={({ isActive }) => isActive ? 'pro active' : 'pro'}>Uploader's Profile</NavLink>
                 </div>
             </div>
-
+            <div>
+                <Footer />
+            </div>
         </>
     )
 }

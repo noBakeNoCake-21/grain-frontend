@@ -1,6 +1,7 @@
 import { useState, useContext, useRef } from "react";
 import { UserContext } from "../context";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import Button from "../components/Button";
 import Loading from "../components/Loading";
 import axios from "axios";
@@ -215,6 +216,9 @@ function Upload() {
                     <p>FileWrapper: mp4</p>
                     <p>Poster Ratio Size: 2:3</p>
                 </div>
+            </div>
+            <div>
+                <Footer />
             </div>
         </div>
     )

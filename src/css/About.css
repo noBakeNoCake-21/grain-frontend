@@ -1,0 +1,83 @@
+/* MAIN CONTAINER */
+.aboutContainer {
+    text-align: center;
+    position: relative;
+}
+
+/* GRADIENT GLOW BACKGROUND */
+/* .aboutContainer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(120, 80, 255, 0.25), transparent 60%),
+        radial-gradient(circle at 80% 20%, rgba(255, 120, 200, 0.25), transparent 70%),
+        radial-gradient(circle at 50% 80%, rgba(0, 150, 255, 0.15), transparent 70%);
+    z-index: 0;
+}
+
+/* KEEP CONTENT ABOVE BACKGROUND */
+.hero,
+.whySection,
+.aboutMe,
+.divider {
+    position: relative;
+    z-index: 1;
+}
+
+/* HERO SECTION */
+.hero {
+    max-width: 800px;
+    margin: 0 auto 60px;
+}
+
+/* GLOW TITLES (ALL HEADINGS) */
+.aboutTitle,
+.whySectionTitle,
+.aboutMeTitle {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+
+    text-shadow:
+        0 0 10px #00f,
+        0 0 10px #0ff,
+        0 0 5px rgba(0, 255, 255, 0.5),
+        0 0 90px rgba(0, 120, 255, 0.3);
+}
+
+/* SUBTEXT */
+.aboutSubtitle,
+.whySectionSubtitle,
+.aboutMeSubtitle {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    opacity: 0.9;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+/* SECTION SPACING */
+.whySection,
+.aboutMe {
+    margin-top: 60px;
+}
+
+/* DIVIDER */
+.divider {
+    width: 60%;
+    height: 1px;
+    margin: 50px auto;
+    background: linear-gradient(to right, transparent, #666, transparent);
+}
+
+/* SUBTLE HOVER GLOW (optional but sexy) */
+.aboutTitle:hover,
+.whySectionTitle:hover,
+.aboutMeTitle:hover {
+    text-shadow:
+        0 0 15px #00f,
+        0 0 15px #0ff,
+        0 0 10px rgba(0, 255, 255, 0.7),
+        0 0 120px rgba(0, 120, 255, 0.5);
+    transition: 0.3s ease;
+}

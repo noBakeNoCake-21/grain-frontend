@@ -1,0 +1,39 @@
+.footer {
+    text-align: center;
+    padding: 15px 5px;
+    color: white;
+    position: relative;
+}
+
+.footerContent {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+.brand {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.creator {
+    font-size: 0.95rem;
+    opacity: 0.7;
+}
+
+/* subtle glow on button hover */
+.login:hover {
+    box-shadow:
+        0 0 10px #00f,
+        0 0 10px #0ff,
+        0 0 5px rgba(0, 255, 255, 0.5),
+        0 0 40px rgba(0, 120, 255, 0.3);
+    transition: 0.3s ease;
+}
+
+.copyright {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    margin-top: 10px;
+}

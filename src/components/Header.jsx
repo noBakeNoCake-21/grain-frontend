@@ -17,9 +17,11 @@ function Header() {
                 {currentUser ? null : <NavLink to={'/signup'} className={({ isActive }) => isActive ? 'login active' : 'login'}>Sign Up</NavLink>}
                 {currentUser ? <NavLink to={'/dashboard'} className={({ isActive }) => isActive ? 'login active' : 'login'}>Dashboard</NavLink> : null}
                 {currentUser ? <NavLink to={'/upload'} className={({ isActive }) => isActive ? 'uploadButton active' : 'uploadButton'}>Upload</NavLink> : null}
-
+                <NavLink to={'/About'} className={({ isActive }) => isActive ? 'login active' : 'login'}>About</NavLink>
             </nav>
+            <div className="divider" />
         </>
+
     )
 }
 

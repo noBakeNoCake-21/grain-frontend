@@ -1,5 +1,9 @@
 Video Hosting / Streaming Site 
 
+
+Creds to log in 
+TestUser121@gmail.com
+Password123
 A platform for filmakers to showcase their movies 
 
 
@@ -24,3 +28,4 @@ Features That need to be added
 - **Intergrating an encoder to encode footage down to h264**
 - Intergrating an Encoder to encode footage - understanding of file type, file wrapper, encoders
 - Intergrating mircoservices for trancations. 
+

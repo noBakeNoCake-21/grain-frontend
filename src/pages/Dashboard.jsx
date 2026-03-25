@@ -14,7 +14,9 @@ import { UserContext } from "../context";
 import Header from "../components/Header";
 import MovieCard from "../components/MovieCard";
 import Button from "../components/Button";
+import Footer from "../components/Footer";
 import GenreRow from "../components/GenreRow";
+
 
 //css
 import '../css/dashboard.css';
@@ -35,7 +37,6 @@ function Dashboard() {
 
     useEffect(() => {
         async function fetchUserMovies() {
-
             try {
                 //make sure backend authenticates this route. this is getting movies of the user who is logged in. 
                 const response = await axios.get("/api/movies/my-movies", { withCredentials: true });
@@ -137,6 +138,9 @@ function Dashboard() {
                 })}
             </div>
 
+            <div>
+                <Footer />
+            </div>
         </main>
     )
 }

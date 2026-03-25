@@ -8,6 +8,7 @@ import axios from "axios";
 import Header from "../components/Header";
 import Button from "../components/Button";
 import { UserContext } from "../context";
+import Footer from "../components/Footer";
 
 
 
@@ -139,6 +140,9 @@ function Signup() {
                     />
                     <Button type='submit'>Submit</Button>
                 </form>
+            </div>
+            <div>
+                <Footer />
             </div>
         </div>
     )

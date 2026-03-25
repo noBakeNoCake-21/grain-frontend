@@ -4,7 +4,7 @@ import { UserContext } from "../context";
 import axios from "axios";
 import Button from "../components/Button";
 import Header from "../components/Header";
-
+import Footer from "../components/Footer";
 
 //css
 import '../css/Login.css';
@@ -81,6 +81,9 @@ function Login() {
                     <Button type='submit'>Submit</Button>
                     {error && <p>{error}</p>}
                 </form>
+            </div>
+            <div>
+                <Footer />
             </div>
         </>
     )

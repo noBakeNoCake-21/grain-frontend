@@ -14,6 +14,7 @@ import Dashboard from './pages/Dashboard.jsx'
 import Upload from './pages/Upload.jsx'
 import Profile from './pages/Profile.jsx'
 import NotFound from './pages/NotFound.jsx'
+import About from './pages/About.jsx';
 //Needs a 404 not found page 
 
 
@@ -42,9 +43,12 @@ const router = createBrowserRouter([
     path: '/profile/:id',
     element: <Profile />
   }, {
+    path: '/About',
+    element: <About />
+  }, {
     path: '*',
     element: <NotFound />
-  }
+  },
 
 
 ])

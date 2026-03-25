@@ -62,8 +62,10 @@ function Profile() {
                         <MovieCard key={m.id} movie={m} />
                     ))}
                 </div>
-
             </main>
+            <div>
+                <Footer />
+            </div>
         </>
     )
 }

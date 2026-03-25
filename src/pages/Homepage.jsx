@@ -7,6 +7,7 @@ import { Outlet } from 'react-router';
 import GenreRow from '../components/GenreRow';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
+import Footer from '../components/Footer';
 
 
 
@@ -56,6 +57,9 @@ function Homepage() {
           })}
         </div>
       </main>
+      <div>
+        <Footer />
+      </div>
     </div>)
   )
 }
