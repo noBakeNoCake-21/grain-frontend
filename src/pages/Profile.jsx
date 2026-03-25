@@ -7,6 +7,7 @@ import '../css/profile.css';
 
 //components 
 import MovieCard from "../components/MovieCard";
+import Footer from "../components/Footer";
 
 function Profile() {
 
