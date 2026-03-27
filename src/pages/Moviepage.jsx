@@ -10,6 +10,7 @@ import axios from "axios";
 //components 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Loading from "../components/Loading";
 
 //css
 import '../css/MoviePage.css';
@@ -23,14 +24,16 @@ function Movie() {
     const { id } = useParams();
     const [movie, setMovie] = useState(null);
     const navigate = useNavigate();
-
+    const [isLoading, setIsLoading] = useState(true);
 
 
     useEffect(() => {
         async function fetchMovie() {
             try {
+                isLoading;
                 const response = await axios.get(`/api/movies/${id}`);
                 setMovie(response.data);
+                setIsLoading(false);
             } catch (err) {
                 console.error(err);
             }
@@ -38,7 +41,7 @@ function Movie() {
         fetchMovie();
     }, [id]);
 
-    if (!movie) { return <p>Loading...</p> }
+    if (!movie) { return <Loading /> }
     return (
         <>
             <Header />

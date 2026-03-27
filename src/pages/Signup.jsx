@@ -58,7 +58,6 @@ function Signup() {
                 "Content-Type": "multipart/form-data",
             },
         }).then(res => {
-            console.log("User signed up!", res.data);
             setCurrentUser(res.data);
             setFormData({
                 firstName: "",

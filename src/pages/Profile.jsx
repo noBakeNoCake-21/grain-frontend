@@ -8,6 +8,7 @@ import '../css/profile.css';
 //components 
 import MovieCard from "../components/MovieCard";
 import Footer from "../components/Footer";
+import Loading from "../components/Loading";
 
 function Profile() {
 
@@ -36,7 +37,7 @@ function Profile() {
 
 
 
-    if (loading) return <div><p>Loading...</p></div>;
+    if (loading) return <div><Loading /></div>;
     if (error) return <div><p>{error}</p></div>;
     if (!user) return <di> <p>No user found.</p></di>;
 

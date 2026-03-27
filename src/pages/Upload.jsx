@@ -126,7 +126,6 @@ function Upload() {
                         });
                     movieInputRef.current.value = "";
                     posterInputRef.current.value = "";
-                    console.log("submit fired");
                     navigate('/dashboard');
                 }).catch(err => {
                     console.error(err);

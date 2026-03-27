@@ -1,12 +1,23 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Loading from "../components/Loading";
+import { useState, useEffect } from "react";
 
 import '../css/About.css';
 
 
 function About() {
 
+    const [loading, setLoading] = useState(false);
 
+    useEffect(() => {
+        // simulate loading for 1.5 seconds
+        const timer = setTimeout(() => setLoading(false), 1500);
+        return () => clearTimeout(timer);
+    }, []);
+
+
+    if (loading) return <div><Loading /></div>;
     return (
         <>
             <Header />
