@@ -33,7 +33,9 @@ function Footer() {
 
                     <p className="copyright">
                         © 2026 Grain. All rights reserved.
+
                     </p>
+
 
                 </div>
             </footer>

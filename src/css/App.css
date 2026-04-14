@@ -25,7 +25,7 @@ body::before {
   background-image:
     radial-gradient(circle at 30% 40%, rgba(120, 80, 255, 0.25), transparent 60%),
     radial-gradient(circle at 70% 60%, rgba(255, 120, 200, 0.25), transparent 70%),
-    radial-gradient(circle at 50% 50%, rgba(0, 150, 255, 0.15), transparent 80%);
+    radial-gradient(circle at 50% 50%, rgba(0, 150, 255, 0.149), transparent 80%);
   background-repeat: no-repeat;
   background-size: cover;
   filter: blur(40px);

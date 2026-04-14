@@ -20,6 +20,7 @@ function Upload() {
     });
 
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const movieInputRef = useRef();
     const posterInputRef = useRef();
@@ -33,7 +34,65 @@ function Upload() {
             ...prev,
             [name]: type === "file" ? files[0] : value  // store the File object
         }));
+
+        setError(prev => ({
+            ...prev,
+            [name]: null
+        }));
     };
+
+    function validateForm() {
+        const { title, description, movieFile, posterFile, genre } = formData
+
+        const errors = {};
+
+        // Title
+        if (!title.trim()) {
+            errors.title = "Title is required";
+        }
+
+        // Description
+        if (!description.trim()) {
+            errors.description = "Description is required";
+        }
+
+        // Genre (no spaces, short)
+        const genreRegex = /^[a-zA-Z]{1,10}$/;
+        if (!genreRegex.test(genre)) {
+            errors.genre = "Genre must be one word, letters only (max 10 chars)";
+        }
+
+        // Movie file check
+        if (!movieFile) {
+            errors.movieFile = "Movie file is required";
+        } else {
+            if (!movieFile.type.startsWith("video/")) {
+                errors.movieFile = "File must be a video";
+            }
+
+            // const maxSize = 2 * 1024 * 1024 * 1024; // 2GB
+            // if (movieFile.size > maxSize) {
+            //     errors.movieFile = "Video file is too large (max 2GB)";
+
+        }
+
+        // Poster file
+        if (!posterFile) {
+            errors.posterFile = "Poster image is required";
+        } else {
+            if (!posterFile.type.startsWith("image/")) {
+                errors.posterFile = "File must be an image";
+            }
+
+            // const maxSize = 5 * 1024 * 1024; // 5MB
+            // if (posterFile.size > maxSize) {
+            //     errors.posterFile = "Image too large (max 5MB)";
+            // }
+        }
+
+        setError(errors);
+        return Object.keys(errors).length === 0;
+    }
 
 
 
@@ -42,11 +101,16 @@ function Upload() {
         e.preventDefault();
         console.log("submit triggered");
 
-        if (!formData.movieFile || !formData.posterFile) {
-            alert("Please select both a movie file and a poster image.");
+        //Check form 
+        if (!validateForm()) {
+            setIsLoading(false);
             return;
         }
+
+        //Set Loading now, if set before form validation, I could stay in loading forever 
         setIsLoading(true);
+
+        //Get MovieFile MetaData
         const getVideoData = (file) => {
             return new Promise((resolve, reject) => {
                 const url = URL.createObjectURL(file);
@@ -70,9 +134,19 @@ function Upload() {
             });
         };
 
-        const file = formData.movieFile;
 
-        const { duration, name, filetype } = await getVideoData(file);
+
+        const file = formData.movieFile;
+        let duration, name, filetype;
+
+        try {
+            ({ duration, name, filetype } = await getVideoData(file));
+        } catch (err) {
+            setError(prev => ({ ...prev, movieFile: "Could not read video file" }));
+            setIsLoading(false);
+            return;
+        }
+
 
 
         const upload = new TusUpload(file, {
@@ -115,7 +189,6 @@ function Upload() {
                         "Content-Type": "multipart/form-data"
                     }
                 }).then((res) => {
-                    console.log(res);
                     setFormData(
                         {
                             title: "",
@@ -155,6 +228,7 @@ function Upload() {
                         onChange={handleChange}
                         required
                     />
+                    {error?.title && <p className="error">{error.title}</p>}
 
                     <label className="label" htmlFor="description">Description</label>
                     <textarea
@@ -167,6 +241,7 @@ function Upload() {
                         rows={4}
                         required
                     />
+                    {error?.description && <p className="error">{error.description}</p>}
                     <label className="label" htmlFor="genre">Genre</label>
                     <input
                         className="input"
@@ -179,6 +254,7 @@ function Upload() {
                         pattern="\S+"
                         required
                     />
+                    {error?.genre && <p className="error">{error.genre}</p>}
                     <label className="label">Upload Movie</label>
                     <input
                         className="input"
@@ -190,6 +266,8 @@ function Upload() {
                         ref={movieInputRef}
                         required
                     />
+                    {error?.movieFile && <p className="error">{error.movieFile}</p>}
+
                     {formData.movieFile && <p>Selected movie: {formData.movieFile.name}</p>}
 
                     <label className="label" htmlFor="img">Upload Poster</label>
@@ -203,9 +281,12 @@ function Upload() {
                         ref={posterInputRef}
                         required
                     />
+                    {error?.posterFile && <p className="error">{error.posterFile}</p>}
                     {formData.posterFile && <p>Selected poster: {formData.posterFile.name}</p>}
 
-                    <Button type='submit'>Upload</Button>
+                    <Button type='submit' disabled={isLoading}>
+                        {isLoading ? "Uploading..." : "Submit"}
+                    </Button>
                 </form>
                 {isLoading && <Loading />}
                 <div className="movieFormat">

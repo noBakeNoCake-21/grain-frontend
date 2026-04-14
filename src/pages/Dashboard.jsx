@@ -16,6 +16,7 @@ import MovieCard from "../components/MovieCard";
 import Button from "../components/Button";
 import Footer from "../components/Footer";
 import GenreRow from "../components/GenreRow";
+import Loading from "../components/Loading";
 
 
 //css
@@ -32,7 +33,10 @@ function Dashboard() {
 
     const [userMovies, setUserMovies] = useState([]);
 
+    const [isLoading, setIsLoading] = useState(null);
+
     const navigate = useNavigate();
+
 
 
     useEffect(() => {
@@ -67,8 +71,6 @@ function Dashboard() {
         try {
             await axios.delete("/api/users/delete-account", { withCredentials: true });
 
-            // Clear user state
-            // Example:
             localStorage.removeItem("token");
             setCurrentUser(null);
 
@@ -83,6 +85,7 @@ function Dashboard() {
 
     async function handleDelete(movieId) {
         try {
+            setIsLoading(true);
             await axios.delete(`/api/movies/${movieId}`, { withCredentials: true });
 
             setUserMovies(prev =>
@@ -91,6 +94,7 @@ function Dashboard() {
             navigate('/dashboard');
 
         } catch (err) {
+            setIsLoading(false);
             console.error(err);
         }
     }

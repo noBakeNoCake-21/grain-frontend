@@ -5,6 +5,7 @@ import axios from "axios";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Loading from "../components/Loading";
 
 //css
 import '../css/Login.css';
@@ -30,6 +31,7 @@ function Login() {
     });
 
     const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     function handleChange(e) {
         const { name, value } = e.target
@@ -38,21 +40,42 @@ function Login() {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        setError(null);
+        const cleanedEmail = formData.email.trim().toLowerCase();
+        const cleanedPassword = formData.password.trim();
+
+        if (!cleanedEmail || !cleanedPassword) {
+            setError("Email and password are required");
+            return;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(cleanedEmail)) {
+            setError("Enter a valid email");
+            return;
+        }
+        if (cleanedPassword.length < 6) {
+            setError("Password must be at least 6 characters");
+            return;
+        }
+        const data = { email: cleanedEmail, password: cleanedPassword };
         try {
-            const data = { email: formData.email, password: formData.password }
-            //login api needed 
+
+            setIsLoading(true);
+
             const response = await axios.post("/api/login", data);
             const user = response.data;
             setCurrentUser(user);
-            setError('');
             setFormData({ email: "", password: "", });
+
         } catch (error) {
             console.log(error);
-            setError('Invaild Password or Email');
+            setError('Invalid Password or Email');
+
+        } finally {
+            setIsLoading(false);
         }
 
     }
-
     return (
         <>
             <Header />
@@ -61,7 +84,7 @@ function Login() {
                     <label className='label' htmlFor='email'>Email</label>
                     <input
                         id='email'
-                        type='text'
+                        type='email'
                         name='email'
                         placeholder='Email'
                         value={formData.email}
@@ -78,8 +101,10 @@ function Login() {
                         onChange={handleChange}
                         className='input' />
 
-                    <Button type='submit'>Submit</Button>
-                    {error && <p>{error}</p>}
+                    <Button type='submit' disabled={isLoading}>
+                        {isLoading ? "Logging in..." : "Submit"}
+                    </Button>
+                    {error && <p className="error">{error}</p>}
                 </form>
             </div>
             <div>
